@@ -18,6 +18,11 @@ public class CarController : MonoBehaviour
     
     private int targetRotation;
 
+    private void Awake()
+    {
+        _input = GetComponent<CarInputSystem>();
+    }
+
     private void LateUpdate()
     {
         for(int i = 0; i < wheelMeshes.Length; i++)
@@ -45,8 +50,9 @@ public class CarController : MonoBehaviour
 
     private void UpdateTargetRotation()
     {
-        if(_input.Horizontal == 0){
-            if(Input.mousePosition.x > Screen.width * 0.5f)
+        if(_input.Horizontal == 0)
+        {
+            if(_input.MousePosition.x > Screen.width * 0.5f)
             {
                 targetRotation = rotationAngle;
             }

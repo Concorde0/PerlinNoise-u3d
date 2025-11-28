@@ -119,6 +119,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &185380735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133581867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e808e9b6bbc615149a02d8d34257ffa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelMeshes:
+  - {fileID: 2133581875}
+  - {fileID: 2133581874}
+  - {fileID: 2133581873}
+  - {fileID: 2133581872}
+  wheelColliders:
+  - {fileID: 2133581871}
+  - {fileID: 2133581870}
+  - {fileID: 2133581869}
+  - {fileID: 2133581868}
+  rotateSpeed: 0
+  rotationAngle: 0
+  wheelRotateSpeed: 0
 --- !u!1 &577027443
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,43 +500,53 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7185074696439552328, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2133581868}
+      addedObject: {fileID: 185380735}
   m_SourcePrefab: {fileID: 100100000, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
 --- !u!1 &2133581867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7185074696439552328, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
   m_PrefabInstance: {fileID: 2133581866}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2133581868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!146 &2133581868 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 2608343707445281179, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133581867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: eca0042e193b09d47bd1482de1c3909f, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+--- !u!146 &2133581869 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 1792501879925488307, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!146 &2133581870 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 6266436034479042107, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!146 &2133581871 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 6441884252227842941, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2133581872 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3491865663046452426, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2133581873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7999521729104747182, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2133581874 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 726328205431551612, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2133581875 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1978949965666797925, guid: bd87424d4f05bab48bddfda7a07038ec, type: 3}
+  m_PrefabInstance: {fileID: 2133581866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
