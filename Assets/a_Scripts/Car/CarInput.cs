@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace a_Scripts
 {
-    public class CarInputSystem : MonoBehaviour
+    public class CarInput : MonoBehaviour
     {
         private PlayerInput _input;
         

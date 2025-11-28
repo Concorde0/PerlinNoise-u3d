@@ -7,7 +7,7 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
 
-    private CarInputSystem _input;
+    private CarInput _input;
     
     public Transform[] wheelMeshes;
     public WheelCollider[] wheelColliders;
@@ -20,7 +20,7 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
-        _input = GetComponent<CarInputSystem>();
+        _input = GetComponent<CarInput>();
     }
 
     private void LateUpdate()
