@@ -2,31 +2,101 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 public class BasicWorld : MonoBehaviour
 {
     
     [SerializeField] private Material meshMaterial; 
+    public float scale;
+    public Vector2 dimensions;
+    public float perlinScale;
+    public float waveHeight;
+    public float offset;
+    public float randomness; 
+    public float globalSpeed; 
+    public int startTransitionLength;
+    public GameObject[] obstacles; 
+    public GameObject gate; 
+    public int startObstacleChance; 
+    public int obstacleChanceAcceleration; 
+    public int gateChance;
+    public int showItemDistance;
+    public float shadowHeight;
+    
+    private Vector3[] beginPoints;
+    private GameObject[] pieces = new GameObject[2];
+    private GameObject currentCylinder;
     
     private void Start()
     {
-        
+	    beginPoints = new Vector3[(int)dimensions.x + 1];
+	    
+	    for(int i = 0; i < 2; i++)
+	    {
+		    GenerateWorldPiece(i);
+	    }
     }
 
     private void LateUpdate()
     {
-        
+	    if (pieces[1] && pieces[1].transform.position.z <= 0)
+	    {
+		    StartCoroutine(UpdateWorldPieces());
+	    }
+	    
+	    UpdateAllItems();
+    }
+    
+    void UpdateAllItems(){
+	    GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+	    
+	    for(int i = 0; i < items.Length; i++){
+
+		    foreach(MeshRenderer renderer in items[i].GetComponentsInChildren<MeshRenderer>()){
+
+			    bool show = items[i].transform.position.z < showItemDistance;
+			    
+			    if (show)
+			    {
+				    renderer.shadowCastingMode = (items[i].transform.position.y < shadowHeight) ? ShadowCastingMode.On : ShadowCastingMode.Off;
+			    }
+				  
+
+			    renderer.enabled = show;
+		    }
+	    }
+    }
+    
+    void GenerateWorldPiece(int i){
+
+	    pieces[i] = CreateCylinder();
+		pieces[i].transform.Translate(Vector3.forward * (dimensions.y * scale * Mathf.PI) * i);
+		
+		
+		
+		//TODO: 对于每个piece，调用UpdateSinglePiece来应用障碍物的生成逻辑
     }
 
 
     private IEnumerator UpdateWorldPieces()
     {
-        
-        
-        
-        yield return 0;
+
+	    Destroy(pieces[0]);
+
+	    pieces[0] = pieces[1];
+
+	    pieces[1] = CreateCylinder();
+
+	    pieces[1].transform.position = pieces[0].transform.position + Vector3.forward * (dimensions.y * scale * Mathf.PI);
+	    pieces[1].transform.rotation = pieces[0].transform.rotation;
+
+	    yield return 0;
     }
 
+    
+   
     private GameObject CreateCylinder()
     {
         GameObject newCylinder = new GameObject();
@@ -60,10 +130,105 @@ public class BasicWorld : MonoBehaviour
         mesh.RecalculateNormals();
         return mesh;
     }
-
     private void CreateShape(ref Vector3[] vertices, ref Vector2[] uvs, ref int[] triangles)
     {
-        
+	    int xCount = (int)dimensions.x; 
+	    int zCount = (int)dimensions.y; 
+
+
+	    vertices = new Vector3[(xCount + 1) * (zCount + 1)];
+	    uvs = new Vector2[(xCount + 1) * (zCount + 1)];
+
+	    int index = 0;
+
+	    float radius = xCount * scale * 0.5f;
+	    
+	    for(int x = 0; x <= xCount; x++)
+	    {
+	        for(int z = 0; z <= zCount; z++)
+	        {
+
+	            var angle = x * Mathf.PI * 2f / xCount;
+
+	            vertices[index] = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, z * scale * Mathf.PI);
+
+	            uvs[index] = new Vector2(x * scale, z * scale);
+
+	            var pX = (vertices[index].x * perlinScale) + offset;
+	            var pZ = (vertices[index].z * perlinScale) + offset;
+	            
+	            Vector3 center = new Vector3(0, 0, vertices[index].z);
+	            vertices[index] += (center - vertices[index]).normalized * (Mathf.PerlinNoise(pX, pZ) * waveHeight);
+	            
+	            if(z < startTransitionLength && beginPoints[0] != Vector3.zero)
+	            {
+	                var perlinPercentage = z * (1f / startTransitionLength);
+	                var beginPoint = new Vector3(beginPoints[x].x, beginPoints[x].y, vertices[index].z);
+	                vertices[index] = (perlinPercentage * vertices[index]) + ((1f - perlinPercentage) * beginPoint);
+	            }
+	            else if(z == zCount)
+	            {
+	                beginPoints[x] = vertices[index];
+	            }
+
+	            if (Random.Range(0, startObstacleChance) == 0 && !(gate == null && obstacles.Length == 0))
+	            {
+		            CreateItem(vertices[index], x);
+	            }
+	                
+	            
+	            index++;
+	        }
+	    }
+	    
+	    triangles = new int[xCount * zCount * 6];  
+	    
+	    int[] boxBase = new int[6];
+
+	    int current = 0;
+	    
+	    for(int x = 0; x < xCount; x++){
+	        boxBase = new[]{ 
+	            x * (zCount + 1), 
+	            x * (zCount + 1) + 1,
+	            (x + 1) * (zCount + 1),
+	            x * (zCount + 1) + 1,
+	            (x + 1) * (zCount + 1) + 1,
+	            (x + 1) * (zCount + 1),
+	        };
+	        
+	        for(int z = 0; z < zCount; z++){
+	            for(int i = 0; i < 6; i++){
+	                boxBase[i] += 1;
+	            }
+	            
+	            for(int j = 0; j < 6; j++){                    
+	                triangles[current + j] = boxBase[j] - 1;
+	            }
+	            
+	            current += 6;
+	        }
+	    }
+    }
+    
+    private void CreateItem(Vector3 vert, int x){
+	    Vector3 zCenter = new Vector3(0, 0, vert.z);
+
+	    if (zCenter - vert == Vector3.zero || x == (int)dimensions.x / 4 || x == (int)dimensions.x / 4 * 3)
+	    {
+		    return;
+	    }
+	    
+	    GameObject newItem = Instantiate((Random.Range(0, gateChance) == 0) ? gate : obstacles[Random.Range(0, obstacles.Length)]);
+	    
+	    newItem.transform.rotation = Quaternion.LookRotation(zCenter - vert, Vector3.up);
+	    newItem.transform.position = vert;
+	    
+	    newItem.transform.SetParent(currentCylinder.transform, false);
+    }
+    
+    public Transform GetWorldPiece(){
+	    return pieces[0].transform;
     }
     
     
