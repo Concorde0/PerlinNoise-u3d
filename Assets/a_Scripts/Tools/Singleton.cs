@@ -19,7 +19,7 @@ public class Singleton<T> : MonoBehaviour where T : class
                     {
                         if (instance == null)
                         {         
-                            var existing = FindObjectOfType(typeof(T));
+                            var existing = FindAnyObjectByType(typeof(T));
                             if (existing != null)
                             {
                                 instance = existing as T;

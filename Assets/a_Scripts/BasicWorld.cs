@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using a_Scripts;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
@@ -9,22 +10,23 @@ public class BasicWorld : MonoBehaviour
 {
     
     [SerializeField] private Material meshMaterial; 
-    public float scale;
-    public Vector2 dimensions;
-    public float perlinScale;
-    public float waveHeight;
-    public float offset;
-    public float randomness; 
-    public float globalSpeed; 
-    public int startTransitionLength;
-    public GameObject[] obstacles; 
-    public GameObject gate; 
-    public int startObstacleChance; 
-    public int obstacleChanceAcceleration; 
-    public int gateChance;
-    public int showItemDistance;
-    public float shadowHeight;
+    [SerializeField] private float scale;
+    [SerializeField] private float perlinScale;
+    [SerializeField] private float waveHeight;
+    [SerializeField] private float offset;
+    [SerializeField] private float randomness; 
+    [SerializeField] private float globalSpeed; 
+    [SerializeField] private int startTransitionLength;
+    [SerializeField] private BasicMovement lampMovement;
+    [SerializeField] private GameObject[] obstacles; 
+    [SerializeField] private GameObject gate; 
+    [SerializeField] private int startObstacleChance; 
+    [SerializeField] private int obstacleChanceAcceleration; 
+    [SerializeField] private int gateChance;
+    [SerializeField] private int showItemDistance;
+    [SerializeField] private float shadowHeight;
     
+    public Vector2 dimensions;
     private Vector3[] beginPoints;
     private GameObject[] pieces = new GameObject[2];
     private GameObject currentCylinder;
@@ -49,7 +51,7 @@ public class BasicWorld : MonoBehaviour
 	    UpdateAllItems();
     }
     
-    void UpdateAllItems(){
+    private void UpdateAllItems(){
 	    GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
 	    
 	    for(int i = 0; i < items.Length; i++){
@@ -62,21 +64,18 @@ public class BasicWorld : MonoBehaviour
 			    {
 				    renderer.shadowCastingMode = (items[i].transform.position.y < shadowHeight) ? ShadowCastingMode.On : ShadowCastingMode.Off;
 			    }
-				  
-
+			    
 			    renderer.enabled = show;
 		    }
 	    }
     }
     
-    void GenerateWorldPiece(int i){
+    private void GenerateWorldPiece(int i){
 
 	    pieces[i] = CreateCylinder();
 		pieces[i].transform.Translate(Vector3.forward * (dimensions.y * scale * Mathf.PI) * i);
 		
-		
-		
-		//TODO: 对于每个piece，调用UpdateSinglePiece来应用障碍物的生成逻辑
+		UpdateSinglePiece(pieces[i]);
     }
 
 
@@ -93,6 +92,28 @@ public class BasicWorld : MonoBehaviour
 	    pieces[1].transform.rotation = pieces[0].transform.rotation;
 
 	    yield return 0;
+    }
+    
+    private void UpdateSinglePiece(GameObject piece)
+    {
+	    BasicMovement movement = piece.AddComponent<BasicMovement>();
+	    movement.moveSpeed = -globalSpeed;
+	    
+	    if(lampMovement != null)
+		    movement.rotateSpeed = lampMovement.rotateSpeed;
+	    
+	    GameObject endPoint = new GameObject();
+	    endPoint.transform.position = piece.transform.position + Vector3.forward * (dimensions.y * scale * Mathf.PI);
+	    endPoint.transform.parent = piece.transform;
+	    endPoint.name = "End Point";
+	    
+	    offset += randomness;
+	    
+	    if (startObstacleChance > 5)
+	    {
+		    startObstacleChance -= obstacleChanceAcceleration;
+	    }
+		   
     }
 
     
@@ -219,12 +240,11 @@ public class BasicWorld : MonoBehaviour
 		    return;
 	    }
 	    
-	    GameObject newItem = Instantiate((Random.Range(0, gateChance) == 0) ? gate : obstacles[Random.Range(0, obstacles.Length)]);
+	    GameObject newItem = Instantiate((Random.Range(0, gateChance) == 0) ? gate : obstacles[Random.Range(0, obstacles.Length)], 
+		    currentCylinder.transform, false);
 	    
 	    newItem.transform.rotation = Quaternion.LookRotation(zCenter - vert, Vector3.up);
 	    newItem.transform.position = vert;
-	    
-	    newItem.transform.SetParent(currentCylinder.transform, false);
     }
     
     public Transform GetWorldPiece(){
