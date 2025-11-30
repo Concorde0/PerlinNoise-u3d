@@ -17,7 +17,6 @@ public class BasicWorld : MonoBehaviour
     [SerializeField] private float randomness; 
     [SerializeField] private float globalSpeed; 
     [SerializeField] private int startTransitionLength;
-    [SerializeField] private BasicMovement lampMovement;
     [SerializeField] private GameObject[] obstacles; 
     [SerializeField] private GameObject gate; 
     [SerializeField] private int startObstacleChance; 
@@ -25,6 +24,7 @@ public class BasicWorld : MonoBehaviour
     [SerializeField] private int gateChance;
     [SerializeField] private int showItemDistance;
     [SerializeField] private float shadowHeight;
+    [SerializeField] private BasicMovement lampMovement;
     
     public Vector2 dimensions;
     private Vector3[] beginPoints;
@@ -208,8 +208,10 @@ public class BasicWorld : MonoBehaviour
 
 	    int current = 0;
 	    
-	    for(int x = 0; x < xCount; x++){
-	        boxBase = new[]{ 
+	    for(int x = 0; x < xCount; x++)
+	    {
+	        boxBase = new[]
+	        { 
 	            x * (zCount + 1), 
 	            x * (zCount + 1) + 1,
 	            (x + 1) * (zCount + 1),
@@ -218,12 +220,15 @@ public class BasicWorld : MonoBehaviour
 	            (x + 1) * (zCount + 1),
 	        };
 	        
-	        for(int z = 0; z < zCount; z++){
-	            for(int i = 0; i < 6; i++){
+	        for(int z = 0; z < zCount; z++)
+	        {
+	            for(int i = 0; i < 6; i++)
+	            {
 	                boxBase[i] += 1;
 	            }
 	            
-	            for(int j = 0; j < 6; j++){                    
+	            for(int j = 0; j < 6; j++)
+	            {                    
 	                triangles[current + j] = boxBase[j] - 1;
 	            }
 	            
