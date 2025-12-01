@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b98d09b3032a546beed2764f3a368c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  meshMaterial: {fileID: -4150430073540031664, guid: b4bfa028fd0c24ee49b98222ba053507, type: 3}
   scale: 0.8
   perlinScale: 0.06
   waveHeight: 5.5

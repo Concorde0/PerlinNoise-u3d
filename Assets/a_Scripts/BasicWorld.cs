@@ -51,12 +51,14 @@ public class BasicWorld : MonoBehaviour
 	    UpdateAllItems();
     }
     
-    private void UpdateAllItems(){
+    private void UpdateAllItems()
+    {
 	    GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
 	    
 	    for(int i = 0; i < items.Length; i++){
 
-		    foreach(MeshRenderer renderer in items[i].GetComponentsInChildren<MeshRenderer>()){
+		    foreach(MeshRenderer renderer in items[i].GetComponentsInChildren<MeshRenderer>())
+		    {
 
 			    bool show = items[i].transform.position.z < showItemDistance;
 			    
@@ -70,7 +72,8 @@ public class BasicWorld : MonoBehaviour
 	    }
     }
     
-    private void GenerateWorldPiece(int i){
+    private void GenerateWorldPiece(int i)
+    {
 
 	    pieces[i] = CreateCylinder();
 		pieces[i].transform.Translate(Vector3.forward * (dimensions.y * scale * Mathf.PI) * i);
@@ -122,6 +125,9 @@ public class BasicWorld : MonoBehaviour
     {
         GameObject newCylinder = new GameObject();
         newCylinder.name = "World piece";
+        
+        currentCylinder = newCylinder;
+        
         MeshFilter meshFilter = newCylinder.AddComponent<MeshFilter>();
         MeshRenderer meshRenderer = newCylinder.AddComponent<MeshRenderer>();
         
@@ -134,7 +140,8 @@ public class BasicWorld : MonoBehaviour
         return newCylinder;
     }
     
-    private Mesh Generate(){
+    private Mesh Generate()
+    {
         Mesh mesh = new Mesh();
         mesh.name = "MESH";
         
@@ -237,7 +244,8 @@ public class BasicWorld : MonoBehaviour
 	    }
     }
     
-    private void CreateItem(Vector3 vert, int x){
+    private void CreateItem(Vector3 vert, int x)
+    {
 	    Vector3 zCenter = new Vector3(0, 0, vert.z);
 
 	    if (zCenter - vert == Vector3.zero || x == (int)dimensions.x / 4 || x == (int)dimensions.x / 4 * 3)
@@ -252,7 +260,8 @@ public class BasicWorld : MonoBehaviour
 	    newItem.transform.position = vert;
     }
     
-    public Transform GetWorldPiece(){
+    public Transform GetWorldPiece()
+    {
 	    return pieces[0].transform;
     }
     
