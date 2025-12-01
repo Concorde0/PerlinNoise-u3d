@@ -93,6 +93,8 @@ public class BasicWorld : MonoBehaviour
 
 	    pieces[1].transform.position = pieces[0].transform.position + Vector3.forward * (dimensions.y * scale * Mathf.PI);
 	    pieces[1].transform.rotation = pieces[0].transform.rotation;
+	    
+	    UpdateSinglePiece(pieces[1]);
 
 	    yield return 0;
     }
