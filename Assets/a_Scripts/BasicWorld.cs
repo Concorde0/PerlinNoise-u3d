@@ -248,18 +248,20 @@ public class BasicWorld : MonoBehaviour
     
     private void CreateItem(Vector3 vert, int x)
     {
-	    Vector3 zCenter = new Vector3(0, 0, vert.z);
+	    var zCenter = new Vector3(0f, 0f, vert.z);
 
 	    if (zCenter - vert == Vector3.zero || x == (int)dimensions.x / 4 || x == (int)dimensions.x / 4 * 3)
-	    {
 		    return;
-	    }
-	    
-	    GameObject newItem = Instantiate((Random.Range(0, gateChance) == 0) ? gate : obstacles[Random.Range(0, obstacles.Length)], 
-		    currentCylinder.transform, false);
-	    
-	    newItem.transform.rotation = Quaternion.LookRotation(zCenter - vert, Vector3.up);
-	    newItem.transform.position = vert;
+
+	    var prefab = (Random.Range(0, gateChance) == 0) ? gate : obstacles[Random.Range(0, obstacles.Length)];
+	    var newItem = Instantiate(prefab);
+
+	    var normal = -(vert - zCenter).normalized; 
+	    var forward = Vector3.forward;
+	    newItem.transform.rotation = Quaternion.LookRotation(forward, normal);
+
+	    newItem.transform.position = vert + normal * 0.5f;
+	    newItem.transform.SetParent(currentCylinder.transform, false);
     }
     
     public Transform GetWorldPiece()
