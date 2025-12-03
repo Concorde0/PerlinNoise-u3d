@@ -19,7 +19,7 @@ namespace a_Scripts
         private void OnEnable()
         {
             _input.Enable();
-            _input.GamePlay.Move.performed += ctx => Horizontal = ctx.ReadValue<float>();
+            _input.GamePlay.Move.performed += ctx => Horizontal = ctx.ReadValue<Vector2>().x;
             _input.GamePlay.Move.canceled += ctx => Horizontal = 0;
             
             _input.GamePlay.Click.performed += ctx => Clicked = true;
