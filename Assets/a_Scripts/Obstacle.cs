@@ -3,15 +3,23 @@ using UnityEngine;
 
 namespace a_Scripts
 {
-    public class Obstacle
+    public class Obstacle : MonoBehaviour
     {
-        void Start()
+        private GameMaganer manager;
+	
+        private void Start()
         {
+            manager = FindFirstObjectByType<GameMaganer>();
         }
+	
+         private void OnCollisionEnter(Collision other)
+         {
 
-        void OnCollisionEnter(Collision other)
-        {
-            
-        }
+             if (other.gameObject.transform.root.CompareTag("Player"))
+             {
+                 manager.GameOver();
+             }
+                
+         }
     }
 }

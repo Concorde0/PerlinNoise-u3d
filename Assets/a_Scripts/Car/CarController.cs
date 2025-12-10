@@ -20,12 +20,15 @@ public class CarController : MonoBehaviour
     public Transform[] grassEffects;  
     public Transform[] skidMarkPivots;
     public float grassEffectOffset; 
+    
     public Transform back;
     public float constantBackForce; 
+    
     public GameObject skidMark;
     public float skidMarkSize;
     public float skidMarkDelay;
     public float minRotationDifference;
+    
     public GameObject ragdoll;
     
     private int targetRotation;
@@ -86,7 +89,8 @@ public class CarController : MonoBehaviour
 				targetRotation = -rotationAngle;
 			}
 		}
-		else{
+		else
+		{
 			targetRotation = (int)(rotationAngle * _input.Horizontal);
 		}
 	}
