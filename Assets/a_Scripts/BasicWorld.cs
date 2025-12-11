@@ -260,7 +260,7 @@ public class BasicWorld : MonoBehaviour
 	    var forward = Vector3.forward;
 	    newItem.transform.rotation = Quaternion.LookRotation(forward, normal);
 
-	    newItem.transform.position = vert + normal * 0.5f;
+	    newItem.transform.position = vert + normal * 0.1f;
 	    newItem.transform.SetParent(currentCylinder.transform, false);
     }
     
