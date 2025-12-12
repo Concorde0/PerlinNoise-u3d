@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1634622480586586
+--- !u!1 &8998240582307599039
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4749106655203508}
-  m_Layer: 0
-  m_Name: Gate
-  m_TagString: Item
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4749106655203508
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634622480586586}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.856888, y: 0, z: -5.477478}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 4197072775109860}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1668690030990744
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4197072775109860}
-  - component: {fileID: 33022764693535040}
-  - component: {fileID: 64327781792041300}
-  - component: {fileID: 23610085500523810}
-  - component: {fileID: 4640181430510175000}
-  - component: {fileID: 3951124764049457331}
-  - component: {fileID: 5396521342931893496}
-  - component: {fileID: 4572121675600642538}
+  - component: {fileID: 6942339902941838629}
+  - component: {fileID: 7900019774553641473}
+  - component: {fileID: 6703460722540630930}
+  - component: {fileID: 5015731983540937666}
+  - component: {fileID: 8733708219837307949}
+  - component: {fileID: 5901903865897071686}
+  - component: {fileID: 4200164895390885480}
+  - component: {fileID: 7272377470614428312}
   m_Layer: 0
   m_Name: Torii_inari_Large1_LOD0
   m_TagString: Untagged
@@ -55,36 +23,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4197072775109860
+--- !u!4 &6942339902941838629
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 1.9106855e-15, z: 0.00000008742278, w: 1}
-  m_LocalPosition: {x: -0, y: -0.89, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.856888, y: -0.62299997, z: -5.477478}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4749106655203508}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33022764693535040
+--- !u!33 &7900019774553641473
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Mesh: {fileID: 4300002, guid: fef0948fc666f2248b31051498b1ddb8, type: 3}
---- !u!64 &64327781792041300
+--- !u!64 &6703460722540630930
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Material: {fileID: 13400000, guid: 54c09362f4132f54892899608c6d529a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -100,13 +68,13 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fef0948fc666f2248b31051498b1ddb8, type: 3}
---- !u!23 &23610085500523810
+--- !u!23 &5015731983540937666
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -144,38 +112,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4640181430510175000
+--- !u!114 &8733708219837307949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eaebcf12989040709c49fd2218f73be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreAudio: {fileID: 5396521342931893496}
---- !u!114 &3951124764049457331
+  scoreAudio: {fileID: 4200164895390885480}
+--- !u!114 &5901903865897071686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea86b1831e394b908815781de87c9188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &5396521342931893496
+--- !u!82 &4200164895390885480
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -266,13 +234,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &4572121675600642538
+--- !u!65 &7272377470614428312
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668690030990744}
+  m_GameObject: {fileID: 8998240582307599039}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

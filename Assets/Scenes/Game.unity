@@ -14,12 +14,12 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_Fog: 1
+  m_FogColor: {r: 0.8352941, g: 0.9647059, b: 1, a: 0}
+  m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogStart: 50
+  m_LinearFogEnd: 200
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -402,11 +402,11 @@ MonoBehaviour:
   offset: 1000
   randomness: 15
   globalSpeed: 20
-  startTransitionLength: 5
+  startTransitionLength: 3
   obstacles:
   - {fileID: 4107159299959341971, guid: 3d9200d81175a46c89f8c1b896927fb5, type: 3}
   - {fileID: 264330907719257999, guid: db577d85972bd4bb285c9ae2209105aa, type: 3}
-  gate: {fileID: 1634622480586586, guid: da4ef7737f75a7a4480533134488f98e, type: 3}
+  gate: {fileID: 8998240582307599039, guid: 6ef3e1417312f514ca35e47693c211f2, type: 3}
   startObstacleChance: 65
   obstacleChanceAcceleration: 1
   gateChance: 7
