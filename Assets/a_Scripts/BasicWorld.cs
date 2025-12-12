@@ -38,6 +38,7 @@ public class BasicWorld : MonoBehaviour
 	    for(int i = 0; i < 2; i++)
 	    {
 		    GenerateWorldPiece(i);
+		    Debug.Log("123");
 	    }
     }
 
